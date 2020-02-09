@@ -37,12 +37,21 @@ const itemsPerPage = 10;
 function showPage(list, page) {
   let startIndex = page * itemsPerPage - itemsPerPage;
   let endIndex = page * itemsPerPage;
+  const students = document.querySelector(".student-list");
+  let item = "";
 
   for (let i = 0; i <= list.length; i++) {
     if (i >= startIndex && i < endIndex) {
-      return list[i];
+      item += `
+      <li class="student-item cf">
+         ${list[i].innerHTML}
+      </li>
+      `;
+      console.log(item);
     }
   }
+  console.log(item);
+  students.innerHTML = item;
 }
 
 /*** 
@@ -90,9 +99,13 @@ for (let i = 0; i < links.length; i++) {
     const active = document.querySelector(".active");
     active.classList.remove("active");
 
+    // add active to link clicked
     const target = e.target;
-
     target.classList.add("active");
+
+    const pageClicked = parseInt(e.target.textContent);
+    console.log(pageClicked);
+    showPage(studentList, pageClicked);
   });
 }
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
