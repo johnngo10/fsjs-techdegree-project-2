@@ -37,22 +37,19 @@ const itemsPerPage = 10;
 function showPage(list, page) {
   let startIndex = page * itemsPerPage - itemsPerPage;
   let endIndex = page * itemsPerPage;
-  const students = document.querySelector(".student-list");
-  let item = "";
 
-  for (let i = 0; i <= list.length; i++) {
-    if (i >= startIndex && i < endIndex) {
-      item += `
-      <li class="student-item cf">
-         ${list[i].innerHTML}
-      </li>
-      `;
-      console.log(item);
+  // display students with matched index
+  for (let i = 0; i < list.length; i++) {
+    if (i >= startIndex && i <= endIndex) {
+      list[i].style.display = "block";
+    } else {
+      list[i].style.display = "none";
     }
   }
-  console.log(item);
-  students.innerHTML = item;
 }
+
+// initialize students on page 1
+showPage(studentList, 1);
 
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
@@ -103,8 +100,9 @@ for (let i = 0; i < links.length; i++) {
     const target = e.target;
     target.classList.add("active");
 
+    // add page number clicked to showPage function
     const pageClicked = parseInt(e.target.textContent);
-    console.log(pageClicked);
+    let item = "";
     showPage(studentList, pageClicked);
   });
 }
