@@ -41,9 +41,9 @@ function showPage(list, page) {
   // display students with matched index
   for (let i = 0; i < list.length; i++) {
     if (i >= startIndex && i <= endIndex) {
-      list[i].style.display = "block";
+      list[i].classList.remove("hidden");
     } else {
-      list[i].style.display = "none";
+      list[i].classList.add("hidden");
     }
   }
 }
@@ -57,6 +57,7 @@ showPage(studentList, 1);
 ***/
 
 function appendPageLinks(list) {
+  // calculate the # of pages needed
   const pagesNeeded = list.length / itemsPerPage;
   let paginationHTML = `
          <div class="pagination">
@@ -106,4 +107,44 @@ for (let i = 0; i < links.length; i++) {
     showPage(studentList, pageClicked);
   });
 }
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
+
+/*** 
+   search component
+***/
+
+const pageHeader = document.querySelector(".page-header");
+const names = document.querySelectorAll("h3");
+
+// create search bar and button html
+const searchHTML = `
+<div class="search">
+   <input type="text" class="search-bar" placeholder="Search Name">
+   <button type="button" class="search-button">Search</button>
+</div>
+`;
+
+// append search to html
+pageHeader.innerHTML += searchHTML;
+
+// searchBar function
+const searchBar = document.querySelector(".search-bar");
+
+searchBar.addEventListener("keyup", e => {
+  const input = e.target.value;
+  console.log(input);
+
+  for (let i = 0; i < names.length; i++) {
+    const studentNames = names[i].textContent.toLowerCase();
+    //  traversing up the dom
+    const parent1 = names[i].parentElement;
+    const parent2 = parent1.parentElement;
+    const hidden = parent2.classList;
+    console.log(hidden);
+
+    if (studentNames.indexOf(input) > -1) {
+      parent2.classList.remove("hidden");
+    } else {
+      parent2.classList.add("hidden");
+    }
+  }
+});
