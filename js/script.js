@@ -167,30 +167,8 @@ searchButton.addEventListener("click", () => {
 
     if (studentNames.indexOf(searchVal) > -1) {
       parent2.classList.remove("hidden");
-      console.log("worked");
     } else {
       parent2.classList.add("hidden");
     }
   }
 });
-
-// searchBar.addEventListener("keyup", e => {
-//   const input = e.target.value;
-
-//   for (let i = 0; i < show.length; i++) {
-//     const child1 = show[i].firstElementChild;
-//     const parent = child1.parentElement;
-//     const child2 = child1.children[1];
-//     const studentNames = child2.textContent;
-//     console.log(studentNames);
-//     //  traversing up the dom
-
-//     if (studentNames.indexOf(input) > -1 && input.length !== 0) {
-//       parent.classList.add("show");
-//       parent.classList.remove("hidden");
-//     } else {
-//       parent.classList.remove("show");
-//       parent.classList.add("hidden");
-//     }
-//   }
-// });
