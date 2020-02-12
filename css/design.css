@@ -140,8 +140,17 @@ body {
   background-color: #4ba6c3;
   border: none;
   border-radius: 0 5px 5px 0;
+  cursor: pointer;
 }
 
 .hidden {
   display: none;
+}
+
+.hideTemp {
+  display: none;
+}
+
+.show {
+  display: block;
 }

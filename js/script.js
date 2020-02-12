@@ -86,6 +86,7 @@ function appendPageLinks(list) {
 
 appendPageLinks(studentList);
 
+// make first page link is active by default
 const firstA = document.querySelector("a");
 firstA.classList.add("active");
 
@@ -129,22 +130,67 @@ pageHeader.innerHTML += searchHTML;
 // searchBar function
 const searchBar = document.querySelector(".search-bar");
 
+// listen for users search input and display the students who matches
 searchBar.addEventListener("keyup", e => {
   const input = e.target.value;
-  console.log(input);
 
   for (let i = 0; i < names.length; i++) {
     const studentNames = names[i].textContent.toLowerCase();
     //  traversing up the dom
     const parent1 = names[i].parentElement;
     const parent2 = parent1.parentElement;
-    const hidden = parent2.classList;
-    console.log(hidden);
+    const hidden = parent2.classList.value;
 
-    if (studentNames.indexOf(input) > -1) {
+    if (studentNames.indexOf(input) > -1 && hidden.indexOf("hidden") < 0) {
       parent2.classList.remove("hidden");
+    } else {
+      parent2.classList.add("hideTemp");
+    }
+
+    if (input.length === 0 && hidden.indexOf("hideTemp") > -1) {
+      parent2.classList.remove("hideTemp");
+    }
+  }
+});
+
+// listen for search button click
+const searchButton = document.querySelector(".search-button");
+
+searchButton.addEventListener("click", () => {
+  const searchVal = searchBar.value;
+
+  for (let i = 0; i < names.length; i++) {
+    const studentNames = names[i].textContent.toLowerCase();
+    //   traversing up the dom
+    const parent1 = names[i].parentElement;
+    const parent2 = parent1.parentElement;
+
+    if (studentNames.indexOf(searchVal) > -1) {
+      parent2.classList.remove("hidden");
+      console.log("worked");
     } else {
       parent2.classList.add("hidden");
     }
   }
 });
+
+// searchBar.addEventListener("keyup", e => {
+//   const input = e.target.value;
+
+//   for (let i = 0; i < show.length; i++) {
+//     const child1 = show[i].firstElementChild;
+//     const parent = child1.parentElement;
+//     const child2 = child1.children[1];
+//     const studentNames = child2.textContent;
+//     console.log(studentNames);
+//     //  traversing up the dom
+
+//     if (studentNames.indexOf(input) > -1 && input.length !== 0) {
+//       parent.classList.add("show");
+//       parent.classList.remove("hidden");
+//     } else {
+//       parent.classList.remove("show");
+//       parent.classList.add("hidden");
+//     }
+//   }
+// });
