@@ -63,7 +63,7 @@ function appendPageLinks(list) {
          <div class="pagination">
             <ul class="pagination-list">
       `;
-
+  // add links to html
   for (let i = 0; i <= list.length; i++) {
     if (i <= pagesNeeded) {
       let liHTML = `
@@ -140,17 +140,32 @@ searchBar.addEventListener("keyup", e => {
     const parent1 = names[i].parentElement;
     const parent2 = parent1.parentElement;
     const hidden = parent2.classList.value;
-
+    // hide students who doesn't match the search results
     if (studentNames.indexOf(input) > -1 && hidden.indexOf("hidden") < 0) {
       parent2.classList.remove("hidden");
     } else {
       parent2.classList.add("hideTemp");
     }
-
+    //  show students on current page if search is empty
     if (input.length === 0 && hidden.indexOf("hideTemp") > -1) {
       parent2.classList.remove("hideTemp");
     }
   }
+
+  //  show no match message when there is no match
+  //   const noMatchHtml = `
+  //   <p class="noMatch">No Match</p>
+  // `;
+  //   const ul = document.querySelector(".student-list");
+  //   const match = document.querySelector(".match");
+  //   const noMatch = document.querySelector(".noMatch");
+  //   console.log(match);
+
+  //   if (match === null && input.length !== 0) {
+  //     ul.innerHTML += noMatchHtml;
+  //   } else if (input.length === 0 && noMatch !== null) {
+  //     noMatch.style.display = "none";
+  //   }
 });
 
 // listen for search button click

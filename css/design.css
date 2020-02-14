@@ -154,3 +154,7 @@ body {
 .show {
   display: block;
 }
+
+.hideMatch {
+  display: none;
+}
